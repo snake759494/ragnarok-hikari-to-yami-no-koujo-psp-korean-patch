@@ -1,11 +1,11 @@
 {
- "version": "v1.0.1",
- "asset": "Ragnarok_Hikari_to_Yami_no_Koujo_KO_v1.0.1.xdelta",
- "asset_size": 24464896,
- "asset_sha256": "11c57d23dc09d4b02abc27e82988673a20d521677cfd847d74df8956ae2a8d7f",
+ "version": "v1.0.2",
+ "asset": "Ragnarok_Hikari_to_Yami_no_Koujo_KO_v1.0.2.xdelta",
+ "asset_size": 13773272,
+ "asset_sha256": "4f4574c9f3d949557dc01e7bad2347a86cce93f63f054856f24dd6523e36deea",
  "source_iso_size": 667385856,
  "source_iso_md5": "fa0f7c65c5190f5ed2dad6594a3bd974",
  "source_iso_sha256": "745b8bf2e2ff542b9c64b6fe21e0130f086cadbfd662c6084e78a1dc81afdbca",
  "result_iso_size": 668035072,
- "result_iso_sha256": "d6e3354b047e7d5b9e6de6e396e6c5c9168c978cdeb2bdcf6b3a02acb8245ec0"
+ "result_iso_sha256": "276adb9312050bd164949e8a27c548625cbc1ec387780af05d120d6d6af3116d"
 }

@@ -5,8 +5,8 @@ PSP 일본판 **ラグナロク～光と闇の皇女～ (NPJH-50431)** 비공식
 ## 적용 방법
 1. 아래 해시와 일치하는 **원본 `.iso`** 를 준비합니다. (CSO·CHD 등으로 변환한 이미지에는 적용할 수 없습니다.)
    - PowerShell: `Get-FileHash -Algorithm MD5 -LiteralPath '.\Ragnarok - Hikari to Yami no Koujo (Japan).iso'`
-2. xdeltaUI 같은 도구로 원본에 `Ragnarok_Hikari_to_Yami_no_Koujo_KO_v1.0.1.xdelta` 를 적용합니다.
-   - 명령줄: `xdelta3 -d -s "Ragnarok - Hikari to Yami no Koujo (Japan).iso" Ragnarok_Hikari_to_Yami_no_Koujo_KO_v1.0.1.xdelta "Ragnarok - Hikari to Yami no Koujo (Korean).iso"`
+2. xdeltaUI 같은 도구로 원본에 `Ragnarok_Hikari_to_Yami_no_Koujo_KO_v1.0.2.xdelta` 를 적용합니다.
+   - 명령줄: `xdelta3 -d -s "Ragnarok - Hikari to Yami no Koujo (Japan).iso" Ragnarok_Hikari_to_Yami_no_Koujo_KO_v1.0.2.xdelta "Ragnarok - Hikari to Yami no Koujo (Korean).iso"`
 3. 만들어진 ISO를 PPSSPP 또는 커스텀 펌웨어에서 실행합니다.
 
 | 항목 | 값 |
@@ -14,9 +14,9 @@ PSP 일본판 **ラグナロク～光と闇の皇女～ (NPJH-50431)** 비공식
 | 원본 ISO 크기 | 667,385,856 바이트 |
 | 원본 ISO MD5 | `fa0f7c65c5190f5ed2dad6594a3bd974` |
 | 원본 ISO SHA-256 | `745b8bf2e2ff542b9c64b6fe21e0130f086cadbfd662c6084e78a1dc81afdbca` |
-| xdelta SHA-256 | `11c57d23dc09d4b02abc27e82988673a20d521677cfd847d74df8956ae2a8d7f` |
+| xdelta SHA-256 | `4f4574c9f3d949557dc01e7bad2347a86cce93f63f054856f24dd6523e36deea` |
 | 결과 ISO 크기 | 668,035,072 바이트 |
-| 결과 ISO SHA-256 | `d6e3354b047e7d5b9e6de6e396e6c5c9168c978cdeb2bdcf6b3a02acb8245ec0` |
+| 결과 ISO SHA-256 | `276adb9312050bd164949e8a27c548625cbc1ec387780af05d120d6d6af3116d` |
 
 ## 주의
 - EBOOT를 복호화한 평문 ELF로 넣었기 때문에 **PPSSPP·커스텀 펌웨어 전용**입니다. 정품 펌웨어에서는 부팅되지 않습니다.
@@ -27,13 +27,12 @@ PSP 일본판 **ラグナロク～光と闇の皇女～ (NPJH-50431)** 비공식
 - 실행 파일 문자열 2,750개: 아이템·장비·스킬·몬스터·인물 이름, 효과 설명, 퀘스트 제목·요약, 시스템 메시지
 - 세이브·설치·메모리스틱 관련 시스템 메시지(UTF-8) 24개, XMB 게임 제목
 - 그림 글자 약 340장: 타이틀 로고의 일본어 부분, 캐릭터 메이킹, 옵션, 스테이터스, 상점, 월드맵, 전투 준비·전투 UI, 이벤트 제목, 지역명, 승패 조건, 달력, 도움말(튜토리얼) 전 페이지
-- 오프닝 동영상 내레이션 17줄: 일본어 자막은 그대로 두고 그 위에 한글 자막을 추가
 - 직업·스킬·몬스터·아이템 이름은 한국 라그나로크 온라인 공식 표기를 따랐습니다.
 - 글꼴: 게임 자체 PGF 폰트에 나눔스퀘어네오로 한글 1,164자 추가 (본문 Bold 15px, 보조 Regular 12px)
 
 ## 그대로 둔 것
 - 이름 입력 자판(가나)과 이름 입력 금지어 목록 — 기본 이름은 「리토」로 표시됩니다. 대사 속 이름 뒤 조사는 「을(를)」처럼 표기한 곳이 있습니다.
-- 엔딩 스태프롤 영상, 제작사 로고, 영문 장식 문구, 카드 일러스트
+- 동영상(오프닝 내레이션 자막 포함), 엔딩 스태프롤 영상, 제작사 로고, 영문 장식 문구, 카드 일러스트
 - 도움말 화면 캡처 속 판독하기 어려운 아주 작은 글자
 
 ## 검증 범위

@@ -69,7 +69,6 @@ def main(out_iso):
         ('/PSP_GAME/USRDIR/system/ccc/ucs2jis.bin', u2j),
         ('/PSP_GAME/SYSDIR/EBOOT.BIN', bytes(elf)),
         ('/PSP_GAME/PARAM.SFO', eboot_text.patch_sfo(open(os.path.join(ROOT, 'work/iso/PSP_GAME/PARAM.SFO'), 'rb').read(), '라그나로크 ～빛과 어둠의 황녀～')),
-        ('/PSP_GAME/USRDIR/movie/op1.pmf', open(os.path.join(ROOT, 'work/movie/op1.pmf'), 'rb').read()),
     ]:
         print(path, iso.replace(path, data))
     iso.close()
