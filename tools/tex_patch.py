@@ -137,7 +137,12 @@ def apply_ops(im, ops):
     return im
 
 
-def encode_into(blob, im):
+# textures whose palette order matters to the game (title logo fades/shines through it):
+# keep the original palette and map pixels to its nearest colours
+KEEP_PALETTE = {'title/ti.gmz', 'title/ti2.gmz'}
+
+
+def encode_into(blob, im, keep_palette=False):
     """quantise RGBA image back into the GIM (same format, same sizes)"""
     image = G.find_chunk(blob, G.IMAGE); h = image.start + 16
     _, _, fmt, order, w, hh, bpp, pa, ha = struct.unpack_from('<HHHHHHHHH', blob, h)
@@ -147,10 +152,24 @@ def encode_into(blob, im):
     pofs = pc.start + pc.data_offset + struct.unpack_from('<I', blob, ph + 0x1C)[0]
     ncol = 256 if fmt == 5 else 16
     assert struct.unpack_from('<H', blob, ph + 4)[0] == 3
-    q = im.quantize(colors=ncol, method=Image.Quantize.FASTOCTREE, dither=Image.Dither.NONE)
-    pal = q.getpalette('RGBA')[:ncol * 4]
-    pal += [0] * (ncol * 4 - len(pal))
-    idx = q.tobytes()
+    if keep_palette:
+        import numpy as np
+        pal = list(blob[pofs:pofs + ncol * 4])
+        P = np.array(pal, dtype=np.int32).reshape(ncol, 4)
+        A = np.array(im.convert('RGBA'), dtype=np.int32).reshape(-1, 4)
+        # weight alpha strongly so transparency is kept exact
+        wgt = np.array([1, 1, 1, 3])
+        best = np.empty(len(A), dtype=np.uint8)
+        for s0 in range(0, len(A), 65536):
+            chunk = A[s0:s0 + 65536]
+            dist = (((chunk[:, None, :] - P[None, :, :]) ** 2) * wgt).sum(axis=2)
+            best[s0:s0 + 65536] = dist.argmin(axis=1)
+        idx = best.tobytes()
+    else:
+        q = im.quantize(colors=ncol, method=Image.Quantize.FASTOCTREE, dither=Image.Dither.NONE)
+        pal = q.getpalette('RGBA')[:ncol * 4]
+        pal += [0] * (ncol * 4 - len(pal))
+        idx = q.tobytes()
     raw = bytearray(pitch * rows)
     for yy in range(hh):
         if fmt == 5:
@@ -191,7 +210,7 @@ def patched_files(get_file, preview_dir=None, spec=None):
             new = apply_ops(im, ops)
             if preview_dir:
                 new.save(os.path.join(preview_dir, path.replace('/', '_') + f'__{n}.png'))
-            enc = encode_into(blob, new)
+            enc = encode_into(blob, new, path in KEEP_PALETTE)
             d[o:o + len(enc)] = enc[:len(d) - o] if len(enc) > len(d) - o else enc
         out[path] = bytes(d)
     return out
